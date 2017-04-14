@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment 8 Part 1</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+    
+        $(function () {
+            // STEP !
+            $("#step1").click(function () {
+                window.alert("Button 1 has been clicked");
+            });
+            
+            // STEP 2
+            $("#step2").bind("click", function () {
+                window.alert("Button 2 has been clicked");
+            });
+            
+            // STEP 3
+            $("#step3").on("click", function () {
+                window.alert("Button 3 has been clicked");
+            });
+            
+            // STEP 4
+            $(".step4").on("click", function () {
+                window.alert("One of the buttons for Step 4 has been clicked");
+            });
+            
+            // STEP 5
+            $("#step5").width(400).height(400);
+            
+//            $("#step5").on({
+//                mouseenter: function() {window.alert("The mouse has entered the div");},
+//                mouseleave: function() {window.alert("The mouse has left the div");},
+//                click: function() {window.alert("The div was clicked");}
+//            });
+            
+            // STEP 6
+            
+            $("#step5").on({
+                mouseenter: function() {$("span").text("The mouse has entered the div");},
+                mouseleave: function() {$("span").text("The mouse has left the div");},
+                click: function() {$("span").text("The div was clicked");}
+            });
+            
+            // STEP 7
+            
+            $("#step7").on("click", function(event) {
+                event.preventDefault();
+                $(this).css("color", "red");
+                window.alert(event.target.nodeName);
+            });
+            
+            // STEP 8
+            
+            $(window).resize(function () {
+                $("#step8").text("Width:" + $(window).width() + " Height:" + $(window).height());
+            });
+            
+            // STEP 9
+            
+            $("input").on({
+                focus: function () {$(this).css("background-color", "#ccc");},
+                blur: function () {$(this).css("background-color", "#fff");},
+            });
+            
+            // STEP 10
+            
+            $("#checkEntries").on("click", function(event) {
+                event.preventDefault();
+                if (document.form1.fullName.value === "") {
+                    window.alert("Your first and last name is required");
+                    $("[name='fullName']").css("border", "solid 2px red");
+                } else if (document.form1.email.value === "") {
+                    window.alert("Your email address is required");
+                    $("[name='email']").css("border", "solid 2px red");
+                } else {
+                    $("[name='fullName']").css("border", "solid 2px green");
+                    $("[name='email']").css("border", "solid 2px green");
+                }
+            });
+            
+            
+            
+
+        }); // end of document ready
+    </script>
+    
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        input {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        form {
+            margin: 10px 0;
+        }
+    
+        #step5 {
+            border: solid 1px #000;
+            margin: 25px 0;
+            padding: 10px;
+        }
+        
+    </style>
+    
+</head>
+<body>
+   
+   <button id="step1">For Step 1</button>
+   <button id="step2">For Step 2</button>
+   <button id="step3">For Step 3</button>
+   <button class="step4">For Step 4</button>
+   <button class="step4">For Step 4</button>
+   
+   <div id="step5">For Steps 5 &amp; 6</div><span></span>
+   
+   <p><a href="http://www.google.com" target="_blank" id="step7">www.google.com</a></p>
+   
+   <div id="step8"></div>
+   
+   <p><input type="text" name="step9" placeholder="For Step 9"></p>
+   
+   <form name="form1">
+       <input type="text" name="fullName" placeholder="First and Last Name">
+       <input type="email" name="email" placeholder="Email">
+       <input type="submit" id="checkEntries">
+   </form>
+    
+</body>
+</html>
