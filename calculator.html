@@ -6,8 +6,64 @@
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
    $(function () {
+       // STEP 1
+       $(":button").css("width", "50px")
+                   .css("font-size", "1.5em")
+                   .css("margin", "3px");
+       $("#container").css("display", "inline-block")
+                      .css("border", "solid 1px #999")
+                      .css("padding", "3px")
+                      .css("background-color", "#eee");
+       $("#seven").css("background-color", "#cc99ff")
+                  .css("border", "dashed 1px #6600cc");
+       $("#eight").css("background-color", "#ff66cc")
+                  .css("border", "grooved 1px #990066");
+       $("#nine").css("background-color", "#6600ff")
+                 .css("border", "solid 1px #1f004d");
+       $("#divide").css("background-color", "#ffff66")
+                   .css("border", "dashed 1px #999900");
+       $("#four").css("background-color", "#00e600")
+                 .css("border", "solid 1px #006600");
+       $("#five").css("background-color", "#e67300")
+                 .css("border", "dashed 1px #804000");
+       $("#six").css("background-color", "#cc6699")
+                .css("border", "grooved 1px #602040");
+       $("#multiply").css("background-color", "#ccffff")
+                     .css("border", "solid 1px #00cccc");
+       $("#one").css("background-color", "#33cccc")
+                .css("border", "dotted 1px #196666");
+       $("#two").css("background-color", "#ffccff")
+                .css("border", "grooved 1px #cc00cc");
+       $("#three").css("background-color", "#ff9900")
+                  .css("border", "dotted 1px #663d00");
+       $("#subtract").css("background-color", "#99ff99")
+                     .css("border", "grooved 1px #006600");
+       $("#zero").css("background-color", "#9900cc")
+                 .css("border", "grooved 1px #39004d");
+       $("#period").css("background-color", "#ffffcc")
+                   .css("border", "solid 1px #e6e600");
+       $("#add").css("background-color", "#666699")
+                .css("border", "dotted 1px #29293d");
+       $("#equal").css("background-color", "#9999ff")
+                  .css("border", "solid 1px #00004d");
+       $("#result").css("background-color", "#fefefe")
+                  .css("border", "solid 1px #999");
        
-       
+       var buttons = $("#container");
+       var result = $("#result");
+       // var clear = document.getElementById("clear");
+        
+       buttons.on("click", function (event) {
+            if (event.target.value != "=") {
+                result.val(result.val() + event.target.value);                  
+            } else {
+                result.val(eval(result.val()));  
+            }
+        });
+        
+//       clear.addEventListener("click", function () {
+//            result.value = "";
+//       });
        
    }); // end of document ready 
     
@@ -37,7 +93,7 @@
         <input type="button" id="zero" value="0">
         <input type="button" id="period" value=".">
         <input type="button" id="add" value="+">
-    </div>
-    <input type="button" id="equal" value="=">
+        <input type="button" id="equal" value="=">
+    </div> 
 </body>
 </html>
