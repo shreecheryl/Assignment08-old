@@ -6,10 +6,15 @@
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
    $(function () {
-       // STEP 1
+       $(":text").css("border", "solid 1px #999")
+                 .css("font-size", "1.5em")
+                 .css("width", "150px");
        $(":button").css("width", "50px")
                    .css("font-size", "1.5em")
                    .css("margin", "3px");
+       $("button").css("border", "solid 1px #999")
+                  .css("width", "80px")
+                  .css("font-size", "1.3em");
        $("#container").css("display", "inline-block")
                       .css("border", "solid 1px #999")
                       .css("padding", "3px")
@@ -47,23 +52,23 @@
        $("#equal").css("background-color", "#9999ff")
                   .css("border", "solid 1px #00004d");
        $("#result").css("background-color", "#fefefe")
-                  .css("border", "solid 1px #999");
+                   .css("border", "solid 1px #999");
        
        var buttons = $("#container");
        var result = $("#result");
-       // var clear = document.getElementById("clear");
+       var clear = $("#clear");
         
        buttons.on("click", function (event) {
-            if (event.target.value != "=") {
+            if (event.target.value != "=" && event.target.value != undefined) {
                 result.val(result.val() + event.target.value);                  
             } else {
                 result.val(eval(result.val()));  
             }
         });
-        
-//       clear.addEventListener("click", function () {
-//            result.value = "";
-//       });
+       
+       clear.on("click", function () {
+           result.val("");
+       });
        
    }); // end of document ready 
     
@@ -73,6 +78,7 @@
 
 <body>
 	<input type="text" readonly id="result">
+    <button id="clear">clear</button>
     <br><br>
     <div id="container">
         <input type="button" id="seven" value="7">
