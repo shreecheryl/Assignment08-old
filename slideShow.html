@@ -6,6 +6,7 @@
    	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script>
         $(function() {
+            
         // preload images
         $("#image_list a").each(function() {
             var swappedImage = new Image();
@@ -14,24 +15,29 @@
 
         // set up event handlers for links    
         $("#image_list a").on("click", function(event) {
+            // cancel the default action of the link
+            event.preventDefault();
+            
             // swap image
             var imageURL = $(this).attr("href");
-            $("#image").attr("src", imageURL);
-
-            //stylize link for selected image
+            $("#image").fadeOut(1000, function() {
+                $("#image").attr("src", imageURL);
+                $("#image").fadeIn(1000);
+            });
+            
+            //stylize links as selected and unselected
             $("a").css("color", "#5b9aa0")
                   .css("font-weight", "normal");
             $(this).css("color", "#622569")
                    .css("font-weight", "bold");
 
-            // cancel the default action of the link
-            event.preventDefault();  // jQuery method that's cross-browser compatible
-        }); // end click
+        }); // end click event
 
         // stylize first link as active
         $("#firstLink").css("color", "#622569")
                        .css("font-weight", "bold");
-        }); // end ready
+            
+       }); // end ready
     </script>
     <style>
         main {
@@ -56,7 +62,7 @@
             display: inline;
         }
         
-        a:link {
+        a:link, a:visited {
             color: #5b9aa0;
         }
         
@@ -68,7 +74,7 @@
 </head>
 <body>
 	<main>              
-	    <div><img src="images/chicken_eye_forWeb.jpg" alt="" id="image"></div>
+	     <div><img src="images/chicken_eye_forWeb.jpg" alt="" id="image"></div>
 	     <ul id="image_list">
 	        <li><a href="images/chicken_eye_forWeb.jpg" id="firstLink">
 	        	1</a></li>
