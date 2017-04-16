@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <title>Image Selection Slideshow</title>
+   	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        $(function() {
+        // preload images
+        $("#image_list a").each(function() {
+            var swappedImage = new Image();
+            swappedImage.src = $(this).attr("href");
+        });
+
+        // set up event handlers for links    
+        $("#image_list a").on("click", function(event) {
+            // swap image
+            var imageURL = $(this).attr("href");
+            $("#image").attr("src", imageURL);
+
+            //stylize link for selected image
+            $("a").css("color", "#5b9aa0")
+                  .css("font-weight", "normal");
+            $(this).css("color", "#622569")
+                   .css("font-weight", "bold");
+
+            // cancel the default action of the link
+            event.preventDefault();  // jQuery method that's cross-browser compatible
+        }); // end click
+
+        // stylize first link as active
+        $("#firstLink").css("color", "#622569")
+                       .css("font-weight", "bold");
+        }); // end ready
+    </script>
+    <style>
+        main {
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 1.2em;
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 600px;
+            border: 1px solid #202020;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        ul {
+            padding-left: 5px;
+        }
+        
+        li {
+            padding-right: 15px;
+            display: inline;
+        }
+        
+        a:link {
+            color: #5b9aa0;
+        }
+        
+        a:hover {
+            color: #622569;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+	<main>              
+	    <div><img src="images/chicken_eye_forWeb.jpg" alt="" id="image"></div>
+	     <ul id="image_list">
+	        <li><a href="images/chicken_eye_forWeb.jpg" id="firstLink">
+	        	1</a></li>
+	        <li><a href="images/cow_face_forWeb.jpg">
+	        	2</a></li>
+	        <li><a href="images/piglets_forWeb.jpg">
+	        	3</a></li>
+	        <li><a href="images/horse_eye_forWeb.jpg">
+	        	4</a></li>
+	        <li><a href="images/dog_forWeb.jpg">
+	        	5</a></li>
+	    </ul>
+	</main>	
+</body>
+</html>
