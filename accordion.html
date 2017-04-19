@@ -2,22 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>jQuery Tabbed Menu Bar</title>
+    <title>jQuery Accordion</title>
     <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
     
     <script>
         
         $(function () {
             
-            $("button:first").addClass("active");
-            $(".tabcontent:first").show();
-            
             $("button").on("click", function () {
-                var contentId = $(this).attr("value");
-                $("button").removeClass("active");
-                $(this).addClass("active");
-                $(".tabcontent").hide();
-                $("#" + contentId).fadeIn();
+                $(this).toggleClass("active");
+                $(this).next().slideToggle();
             })
             
         }); // end of jQuery document ready
@@ -30,42 +24,36 @@
             margin: 50px;
         }
 
-        /* Style the tab */
-        div.tab {
-            overflow: hidden;
-            border: none;
-            background-color: #f1f1f1;
-            max-width: 625px;
-        }
-
         /* Style the buttons inside the tab */
-        div.tab button {
-            background-color: inherit;
-            float: left;
+        button {
+            display: block;
             border: 1px solid #ccc;
+            border-radius: 5px;
             outline: none;
             cursor: pointer;
-            padding: 14px 20px;
+            width: 90%;
+            padding: 14px 30px;
             font-size: 17px;
-        }
-        
-        div.tab button:not(:first-child) {
-            border-left: none;
+            text-align: left;
+            background: #f1f1f1 url(images/plus.png) no-repeat 10px center;
+            margin: 10px 0;
         }
 
         /* Change background color of buttons on hover */
-        div.tab button:hover {
-            background-color: #ddd;
+       button:hover {
+            background-color: #e6e6e6;
         }
 
         /* Create an active/current tablink class */
-        div.tab button.active {
-            background-color: #fff;
-            border-bottom: none;
+        .active {
+            background: #d9d9d9 url(images/minus.png) no-repeat 10px center;
+            border-radius: 5px 5px 0 0;
+            font-weight: bold;
+            border-bottom: 3px solid #ccc;
         }
         
         /* Style the tab content */
-        .tabcontent {
+        .content {
             display: none;
             padding: 6px 12px;
             max-width: 600px;
@@ -75,32 +63,23 @@
 </head>
 <body>
 
-    <div class="tab">
-      <button class="tablinks" value="London">London</button>
-      <button class="tablinks" value="Paris">Paris</button>
-      <button class="tablinks" value="Tokyo">Tokyo</button>
-    </div>
-
-    <div id="London" class="tabcontent">
-      <h3>London</h3>
+    <button>London</button>
+    <div class="content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet magna nibh. Morbi ut imperdiet erat, et malesuada ex. Sed varius finibus tortor, vitae commodo arcu sagittis quis. Nullam ultricies, augue quis viverra volutpat, arcu ipsum dignissim libero, vitae dapibus velit ligula et arcu. Proin tincidunt tortor id ullamcorper dignissim. Curabitur rutrum ultricies luctus. Aliquam rutrum rhoncus elit, eu finibus libero mattis a. Nulla non interdum mauris. Nullam placerat, dolor eu pulvinar pellentesque, elit arcu porta libero, non rhoncus diam mi non arcu. Nunc sollicitudin eget odio id iaculis.</p>
-
-        <p>Maecenas posuere tincidunt neque posuere condimentum. Fusce vitae imperdiet velit. Vivamus elementum id ipsum nec condimentum. Sed vitae ex sem. Donec a auctor leo. Aliquam tincidunt augue ac urna bibendum, in tincidunt sem dignissim. Integer condimentum orci tellus, a euismod odio placerat non. Sed sed lacinia arcu.</p>
     </div>
-
-    <div id="Paris" class="tabcontent">
-      <h3>Paris</h3>
+    
+    <button>Paris</button>
+    <div class="content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis suscipit augue. In quis leo consequat, elementum arcu id, interdum ipsum. Mauris eleifend, mi luctus posuere laoreet, enim urna posuere ipsum, nec sagittis nulla erat quis leo. Sed imperdiet diam porttitor mauris tristique, eu semper velit tempor. Donec bibendum, velit et mollis vestibulum, tortor diam tempus lacus, at interdum elit mi ac neque. Aenean ut volutpat ipsum.</p>
 
         <p>Nullam consectetur, massa in convallis porta, mi ipsum consectetur urna, a porttitor leo ligula nec lorem. Fusce aliquam nec ipsum sit amet congue. Nullam blandit ligula vitae sagittis luctus. Vivamus sed leo nunc. Pellentesque sit amet tortor molestie, congue nibh in, pellentesque leo. Ut vel magna posuere, maximus lorem et, tempor purus. In ornare risus ac quam euismod, ac lobortis enim varius. Maecenas pretium sit amet sapien vitae laoreet. Pellentesque mollis quam augue, sed vestibulum metus pellentesque ac. Etiam ac rhoncus ex. Fusce vitae ex ex. Nulla id eros in enim iaculis consectetur ut sed tellus.</p> 
     </div>
-
-    <div id="Tokyo" class="tabcontent">
-      <h3>Tokyo</h3>
+    
+    <button>Tokyo</button>
+    <div class="content">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in semper risus. Nulla vel sapien non felis fermentum laoreet. Morbi faucibus vulputate mi at suscipit. Cras molestie dolor at risus bibendum, ac consequat massa laoreet. Quisque eget massa odio. Duis imperdiet venenatis iaculis. Phasellus dictum accumsan sem, ac blandit augue. Donec suscipit interdum sapien vitae laoreet. Aenean vel condimentum nibh. Suspendisse ac sollicitudin metus.</p>
 
         <p>Praesent mi elit, laoreet quis lectus ut, ultricies vehicula magna. Vivamus auctor tempor ex non efficitur. Nam fermentum mauris ac felis pulvinar, a pretium nibh feugiat. Praesent ac dapibus mi. Proin felis libero, cursus ac risus ut, sollicitudin imperdiet orci. Aliquam erat volutpat. Nulla facilisi. Ut vel sem quis libero auctor elementum nec quis metus. Duis fringilla a lectus vel sollicitudin. Aenean sagittis lorem sed velit pulvinar, vitae varius leo laoreet. Aenean porttitor dui eu lectus fermentum, ac imperdiet odio suscipit.</p>
     </div>
-
-</body>
+</body>    
 </html>
